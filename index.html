@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      // function Header() {
+        // function Header(props) {
+          function Header({name}) {
+        // return <h1>Belajar React Js bareng {props.name}</h1>;
+        return <h1>Belajar React Js bareng {name? name :'bujang'}</h1>; // jika namanya true
+        //maka nama akan diisi nam,jika tidak akan berisi wpu
+      }
+      // kurung kurawal dipakai jika ingin mengunakan js
+      // misal seperti dibawah ini {students.map}
+      function HomePage() {
+        const students = [
+          'samsul','arif','jamal'
+        ];
+        const [likes,setLikes] = React.useState(0);
+        function handleClick() {
+          setLikes(likes + 1);
+        }
+        return (
+          <>
+            <Header name="samsul" />
+            <ul>
+              {students.map((student) => 
+                <li key={student}>{student}</li>) 
+              } 
+              </ul>
+              <button onClick={handleClick}>Like ({likes})</button>
+          </>
+        );
+      }
+      root.render(<HomePage />);
+      // root.render(<Header />);
+    </script>
+  </body>
+</html>
+
+<!-- Komponen Bersarang
+Sebuah aplikasi biasanya di dalamnya terdapat
+banyak komponen
+Kita bisa menyimpan sebuah komponen di dalam
+komponen lain
+• Misalnya kita mau memasukkan komponen Header tadi ke dalam komponen HomePage 
+- Buat func untuk setiap komponen yg akan di buat
+- kita bisa menggunakan komponen berulang-ulang
+dengan menuliskan tagnya kembali
+didalam komponen lain atau saat di render
+
+Menampilkan Data Menggunakan Props
+Di dalam HTML biasa, kita bisa menggunakan atribut 
+untuk mengubah perilaku dari sebuah elemen
+• Seperti contohnya atribut src di dalam 
+elemen img, bisa mengubah sumber gambar yang akan ditampilkan
+Mirip seperti itu, kita juga bisa mengirimkan properti 
+sebagai informasi untuk sebuah komponen, yang disebut dengan props
+Props tersebut ditangkap sebagai object saat komponen dibuat
+
+-Unique Key
+1.react butuh sesuatu untuk menandai sebuah elemen
+  dengan nilai yg unik,karena react harus tau mana 
+  elemen yg berubah
+
+- Menambah interaktivitas dengan state
+1.pada react,data yg berubah seiring waktu disebut state
+
+- state dan hooks
+1. react punya serangkaian func yg diesbut hooks,
+  yg memungkinkan kita menambahkan login pada komponen kita
+2. salah satu hooks yg bisa digunakan untuk mengelola
+  state adalah setState(),yg mengembalikan nilai berupa
+  array,dan bisa kita akses dengan teknik destructuring
+3.elemen pertama pada array adalah nilai statenya,
+  dan elemen kedua adalah func untuk mengubah nilainya.
+  elemen pertama adalah apa(variabel) yg ingin kita kelolal,
+  elem kedua bentuknya func yg bertugas untuk mengubah
+  nilai pertama tadi
+4. nama func boleh apa saja,tapi biasanya diawali
+  dengan set lalu nama nilai statenya,
+  contoh: nama statenya Like berarti nama funcnya
+  setLike
+  contoh: const [likes,setLikes] = React.useState();
+5. kita juga bisa memberi nilai awal pada nilai statenya,
+  dengan mengisi argumen pada useState(),
+  contoh: const [likes,setLikes] = React.useState(0)
+  useState() mengembalikan array
+  [0, setLikes] = [nilai awal, func untuk mengubah nilai awal
+
+5. State updater function
+-sebuah func yg bisa mengupdate nilai dari state/variabel state,
+kalau diatas setLike adalah state updater function
+-untuk menjalankan func kita bisa panggil didlm sebuah func lain
+didalam komponen kita
+-misalnya kita mau mengubah nilai likes agar bertambah satu
+setiap tombol diklik,dan misalkan kita lakukan didlm func handleClick()
+contoh: function handleClick() {
+  setLikes(likes + 1);}
+- terakhir kita tinggal membuat event handlernya,
+misalkan kita membuat tombol untuk menangani eventnya
+contoh: <button onClick={handleClick}>
+- setiap tombol di klik,func handleClick() akan dijalankan
+-kemudian tampilkan data likes sebagai teks  didlm tombolnya
+contoh: <button onClick={handleClick}>Like ({likes})</button>
+-->
